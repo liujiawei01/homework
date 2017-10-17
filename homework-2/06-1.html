@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+        <title></title>
+        <script src="https://cdn.bootcss.com/vue/2.4.4/vue.js"></script>
+	</head>
+	<body>
+       
+    </body>
+    <script>
+        var vm = new Vue({
+            data: {
+                a: 1,
+                b: 2,
+                c: 3
+            },
+            watch: {
+                a: function(val, oldVal) {
+                    console.log('new: %s, old: %s', val, oldVal)
+                },
+             
+                b: 'someMethod',
+               
+                c: {
+                    handler: function(val, oldVal) {  },
+                    deep: true
+                }
+            }
+        })
+        vm.a = 2 
+    </script>
+</html>

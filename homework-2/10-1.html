@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+        <title></title>
+        <script src="https://cdn.bootcss.com/vue/2.4.4/vue.js"></script>
+        <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+        
+       <style>
+           .hello{
+               width: 100px;
+               height: 100px;
+             background-color:yellow;
+             position: absolute;
+           }
+           .world{
+               width: 100px;
+               height: 100px;
+               background-color: blue;
+               position: absolute;
+               left: 800px;
+           }
+       </style>
+	</head>
+	<body>
+        <div id="box">
+           <div class="hello"  v-drag>
+           </div>
+           <div class="world"  v-drag>
+           </div>
+        </div>
+    </body>
+    <script>
+        Vue.directive('drag',{
+           bind:function(el){
+               console.log(el);
+               el.onmousedown=function(event){
+            	var disX=event.clientX-this.offsetLeft;
+            	var disY=event.clientY-this.offsetTop;
+            
+            	document.onmousemove=function(event){
+            		el.style.left=event.clientX-disX+"px";
+            		el.style.top=event.clientY-disY+"px";
+            	
+            	}
+            	document.onmouseup=function(event){
+            		document.onmousemove=document.onmouseup=null;
+            	}
+            	return false;
+            }
+
+           }   
+    })
+      let vm= new Vue({
+            el:'#box',
+            data:{
+            }    
+        })
+
+    </script>
+</html>
